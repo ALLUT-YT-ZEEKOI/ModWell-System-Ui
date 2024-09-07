@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <style>
+        /* General tab styling */
+        .tab-bar {
+            display: flex;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tablinks {
+            background-color: #f1f1f1;
+            border: none;
+            outline: none;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 16px;
+            color: black;
+        }
+
+        .tablinks.active {
+            background-color: black;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.show {
+            display: block;
+        }
+
+        /* Order Summary Mobile UI */
+        .order-main-div {
+            background: rgba(0, 0, 0, 0.27);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            font-family: Arial, sans-serif;
+            margin-top: 16px;
+        }
+
+        .order-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-date {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .order-date-detail {
+            font-size: 14px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="col-lg-8">
+        <p>Order Details</p>
+        <div class="tab-bar-container">
+            <div class="tab-bar">
+                <button class="tablinks" onclick="openTab(event, 'tab1')" id="defaultOpen">Order Details</button>
+                <button class="tablinks" onclick="openTab(event, 'tab2')">Order Summary</button>
+            </div>
+        </div>
+
+        <div id="tab1" class="tab-content">
+            <div class="scrollable-content_purchase">
+                <!-- Repeat this section for each product -->
+                <div class="purchaseOrdersHistory">
+                    <div style="display: flex; align-items: start;">
+                        <div style="display: flex;flex-direction: column;">
+                            <img class="productimg" src="https://moddwell.com/public/uploads/all/eVUlJuXzHAFjn8Y8kFQELdP9mU1kyfuKUGOF9tGV.jpg" alt="">
+                        </div>
+                        <div style="display: flex;flex-direction: column;padding-left: 10px;">
+                            <div style="display: flex;justify-content: space-between;">
+                                <p class="ProductTitle">Woven with Love - Small - (600mm x 450mm)</p>
+                            </div>
+                            <p class="ProductDemo">Demo1,Demo2</p>
+                            <p style="margin: 0;"><span class="spanPrice">Price:</span> 
+                                <span class="priceamount">2000</span>
+                            </p>
+                            <p style="margin: 0;"><span class="spanPrice">Price:</span> 
+                                <span class="priceamount">2000</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex;flex-direction: column;justify-content: space-between;">
+                        <div style="width: 100px; color: white; align-items: center; text-align: end;"></div>
+                        <div style="display: flex;justify-content: space-between; width: 100px; color: white;text-align: start;">
+                            <span style="font-size: 14px; color: rgba(255, 255, 255, 0.774);">Quantity</span> 1
+                        </div>
+                    </div>
+                </div>
+                <hr style="color: white; margin-top: 0;">
+                <!-- End of repeated section -->
+            </div>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <div style="height: 400px;" id="Order_summery">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="order-container">
+                            <table class="order-table">
+                                <tr>
+                                    <th>Order Code</th>
+                                    <td>MD24-000189</td>
+                                </tr>
+                                <tr>
+                                    <th>Customer</th>
+                                    <td>Ameen</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>Ameen@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <th>Shipping address</th>
+                                    <td class="order-status">ameen, thiruvananthapuram, 695301,</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="order-container">
+                            <table class="order-table">
+                                <tr>
+                                    <th>Order date</th>
+                                    <td>30-09-2024</td>
+                                </tr>
+                                <tr>
+                                    <th>Order status</th>
+                                    <td>Pending</td>
+                                </tr>
+                                <tr>
+                                    <th>Total order amount</th>
+                                    <td>7000</td>
+                                </tr>
+                                <tr>
+                                    <th>Shipping Method</th>
+                                    <td class="order-status">flat shipping rate</td>
+                                </tr>
+                                <tr>
+                                    <th>Payment Method</th>
+                                    <td class="order-status">G-pay</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("defaultOpen").click(); // Simulate click on the default tab on page load
+
+        function openTab(evt, tabName) {
+            var i, tabContent, tabLinks;
+
+            // Hide all tab content
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("show");
+            }
+
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add("show");
+
+            // Remove 'active' class from all tabs
+            tabLinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            // Add 'active' class to the clicked tab
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
